@@ -20,11 +20,23 @@ function App() {
     }
   }
 
+  function generateRandomLocation(): LatLngExpression {
+    const minLat = -90;
+    const maxLat = 90;
+    const minLng = -180;
+    const maxLng = 180;
+
+    const randomLat = Math.random() * (maxLat - minLat) + minLat;
+    const randomLng = Math.random() * (maxLng - minLng) + minLng;
+
+    return [randomLat, randomLng];
+  }
+
   const [position, setPosition] = useState<LatLngExpression | undefined>([
-    51.505, -0.09,
+    51.9, -0.09,
   ]);
   const handleButtonClick = () => {
-    setPosition([40.7128, -74.006]);
+    setPosition(generateRandomLocation());
   };
 
   useEffect(() => {
