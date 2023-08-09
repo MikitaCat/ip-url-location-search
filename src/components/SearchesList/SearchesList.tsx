@@ -24,13 +24,21 @@ const array = [
   "192.0.2.1",
   "88.156.138.82",
   "255.255.255.0.",
-  "192.0.2.1",
-  "88.156.138.82",
+  // "192.0.2.1",
+  // "88.156.138.82",
 ];
 
 export const SearchesList = () => {
   return (
-    <Paper component="aside" sx={{ maxHeight: "400px", overflow: "auto" }}>
+    <Paper
+      component="aside"
+      sx={{
+        maxHeight: "300px",
+        height: "100%",
+        overflow: "auto",
+      }}
+      elevation={3}
+    >
       <List>
         <ListSubheader>Already Searched:</ListSubheader>
         <Divider />

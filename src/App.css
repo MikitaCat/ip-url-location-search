@@ -9,7 +9,10 @@
 
 .sidebar {
   width: 300px;
-  margin-right: 10px;
+  margin-right: 15px;
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 .main {

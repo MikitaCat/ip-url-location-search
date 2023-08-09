@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { SearchesList } from "./components/SearchesList/SearchesList";
-import { Button, Container, Grid, Paper, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import AppMap from "./components/Map/AppMap";
 import Info from "./components/Info/Info";
 import "./App.css";
