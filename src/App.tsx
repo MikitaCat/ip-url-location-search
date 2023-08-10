@@ -39,9 +39,9 @@ function App() {
     setPosition(generateRandomLocation());
   };
 
-  useEffect(() => {
-    getIpFromUrl("https://www.openai.com/research/");
-  }, []);
+  // useEffect(() => {
+  //   getIpFromUrl("https://www.openai.com/research/");
+  // }, []);
 
   return (
     <div className="container">
@@ -51,7 +51,7 @@ function App() {
 
       <div className="main">
         <div className="main__usersInfo">
-          <AppMap position={position} />
+          <AppMap />
           <Info />
         </div>
 
