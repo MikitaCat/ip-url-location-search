@@ -33,13 +33,15 @@ export const SearchesList = () => {
     <Paper
       component="aside"
       sx={{
+        maxWidth: "300px",
+        width: "100%",
         maxHeight: "300px",
         height: "100%",
         overflow: "auto",
       }}
       elevation={3}
     >
-      <List>
+      <List sx={{ maxWidth: "300px", width: "100%" }}>
         <ListSubheader>Already Searched:</ListSubheader>
         <Divider />
         {array.map((el, index) => {

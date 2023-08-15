@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { SearchesList } from "./components/SearchesList/SearchesList";
-import { Button, TextField } from "@mui/material";
+import {
+  AppBar,
+  Button,
+  Drawer,
+  IconButton,
+  TextField,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import AppMap from "./components/Map/AppMap";
 import Info from "./components/Info/Info";
 import "./App.css";
 import { LatLngExpression } from "leaflet";
+import Header from "./components/Header/Header";
 
 function App() {
   async function getIpFromUrl(url: string) {
@@ -20,58 +29,57 @@ function App() {
     }
   }
 
-  function generateRandomLocation(): LatLngExpression {
-    const minLat = -90;
-    const maxLat = 90;
-    const minLng = -180;
-    const maxLng = 180;
-
-    const randomLat = Math.random() * (maxLat - minLat) + minLat;
-    const randomLng = Math.random() * (maxLng - minLng) + minLng;
-
-    return [randomLat, randomLng];
-  }
-
   const [position, setPosition] = useState<LatLngExpression | undefined>([
     51.9, -0.09,
   ]);
   const handleButtonClick = () => {
-    setPosition(generateRandomLocation());
+    // setPosition(generateRandomLocation());
   };
+
+  const [string, setString] = useState("");
 
   // useEffect(() => {
   //   getIpFromUrl("https://www.openai.com/research/");
   // }, []);
 
   return (
-    <div className="container">
-      <div className="sidebar">
-        <SearchesList />
+    <>
+      <Header />
+      <div className="container">
+        <div className="sidebar">
+          <SearchesList />
+        </div>
+
+        <div className="main">
+          <Typography>Users Info</Typography>
+          <div className="main__usersInfo">
+            <AppMap />
+            <Info />
+          </div>
+
+          <div className="main__prompt">
+            <TextField
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setString(e.target.value);
+                console.log(string);
+              }}
+              value={string}
+              sx={{ width: "100%", marginRight: "10px" }}
+              label="Eneter IP adress or URL"
+              variant="standard"
+            />
+            <Button variant="contained" onClick={handleButtonClick}>
+              Search
+            </Button>
+          </div>
+
+          <div className="main__usersInfo">
+            <AppMap />
+            <Info />
+          </div>
+        </div>
       </div>
-
-      <div className="main">
-        <div className="main__usersInfo">
-          <AppMap />
-          <Info />
-        </div>
-
-        <div className="main__prompt">
-          <TextField
-            sx={{ width: "100%", marginRight: "10px" }}
-            label="Eneter IP adress or URL"
-            variant="standard"
-          />
-          <Button variant="contained" onClick={handleButtonClick}>
-            Search
-          </Button>
-        </div>
-
-        <div className="main__usersInfo">
-          <AppMap />
-          <Info />
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 

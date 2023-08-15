@@ -1,8 +1,6 @@
 import { Paper } from "@mui/material";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import "leaflet/dist/images/marker-icon.png"; // Добавьте этот импорт
-import "leaflet/dist/images/marker-shadow.png"; // Добавьте этот импор
 import { LatLngExpression, Icon } from "leaflet";
 import { useEffect, useLayoutEffect, useState } from "react";
 import axios from "axios";
@@ -27,16 +25,30 @@ const AppMap = () => {
     }
   }
 
-  useLayoutEffect(() => {
-    getIpFromUrl();
-  }, []);
+  function generateRandomLocation(): LatLngExpression {
+    const minLat = -90;
+    const maxLat = 90;
+    const minLng = -180;
+    const maxLng = 180;
+
+    const randomLat = Math.random() * (maxLat - minLat) + minLat;
+    const randomLng = Math.random() * (maxLng - minLng) + minLng;
+
+    return [randomLat, randomLng];
+  }
+
+  const locat = generateRandomLocation();
+
+  // useEffect(() => {
+  //   // getIpFromUrl();
+  // });
 
   return (
     <Paper sx={{ height: "300px", width: "60%" }} elevation={3}>
       <MapContainer
-        key={location?.toString()}
-        center={location}
-        zoom={9}
+        key={locat?.toString()}
+        center={locat}
+        zoom={13}
         style={{ height: "100%", width: "100%" }}
         attributionControl={false}
       >
@@ -45,7 +57,7 @@ const AppMap = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
 
-        {location && <Marker position={location} icon={customIcon}></Marker>}
+        {locat && <Marker position={locat} icon={customIcon}></Marker>}
       </MapContainer>
     </Paper>
   );
