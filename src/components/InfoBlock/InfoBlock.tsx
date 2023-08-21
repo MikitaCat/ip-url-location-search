@@ -1,19 +1,35 @@
-import { Paper } from "@mui/material";
+import { Table, TableBody, TableCell, TableRow } from "@mui/material";
 import React from "react";
+import { HighlitedTableCell, InfoBlockPaper } from "./InfoBlock.styled";
 
 const InfoBlock = () => {
   return (
-    <Paper
-      sx={{
-        height: "300px",
-        width: "39%",
-        padding: "5px",
-        "@media (max-width: 990px)": { width: "100%" },
-      }}
-      elevation={3}
-    >
-      soksekeconwcon
-    </Paper>
+    <InfoBlockPaper>
+      <Table>
+        <TableBody>
+          <TableRow>
+            <HighlitedTableCell component="th" scope="row">
+              IP adress:
+            </HighlitedTableCell>
+            <TableCell>jasxjnjansx</TableCell>
+          </TableRow>
+
+          <TableRow>
+            <HighlitedTableCell component="th" scope="row">
+              Country:
+            </HighlitedTableCell>
+            <TableCell>jasxjnjansx</TableCell>
+          </TableRow>
+
+          <TableRow>
+            <HighlitedTableCell component="th" scope="row">
+              City:
+            </HighlitedTableCell>
+            <TableCell>jasxjnjansx</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </InfoBlockPaper>
   );
 };
 

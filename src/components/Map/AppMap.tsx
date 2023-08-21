@@ -13,34 +13,34 @@ const AppMap = () => {
 
   const [location, setLocation] = useState<LatLngExpression>([22.5, 22.5]);
 
-  async function getIpFromUrl() {
-    try {
-      const response = await axios(`http://ip-api.com/json`);
-      const data = await response;
-      const latLon: LatLngExpression = [response.data.lat, response.data.lon];
-      setLocation(latLon);
-      console.log("Position", latLon);
-    } catch (error) {
-      console.error("Error getting IP:", error);
-    }
-  }
+  // async function getMyIpLocation() {
+  //   try {
+  //     const response = await axios(`http://ip-api.com/json`);
+  //     const data = await response;
+  //     const latLon: LatLngExpression = [response.data.lat, response.data.lon];
+  //     setLocation(latLon);
+  //     console.log("Position", latLon);
+  //   } catch (error) {
+  //     console.error("Error getting IP:", error);
+  //   }
+  // }
 
-  function generateRandomLocation(): LatLngExpression {
-    const minLat = -90;
-    const maxLat = 90;
-    const minLng = -180;
-    const maxLng = 180;
+  // function generateRandomLocation(): LatLngExpression {
+  //   const minLat = -90;
+  //   const maxLat = 90;
+  //   const minLng = -180;
+  //   const maxLng = 180;
 
-    const randomLat = Math.random() * (maxLat - minLat) + minLat;
-    const randomLng = Math.random() * (maxLng - minLng) + minLng;
+  //   const randomLat = Math.random() * (maxLat - minLat) + minLat;
+  //   const randomLng = Math.random() * (maxLng - minLng) + minLng;
 
-    return [randomLat, randomLng];
-  }
+  //   return [randomLat, randomLng];
+  // }
 
-  const locat = generateRandomLocation();
+  // const locat = generateRandomLocation();
 
   // useEffect(() => {
-  //   // getIpFromUrl();
+  //   getMyIpLocation();
   // });
 
   return (
@@ -53,8 +53,8 @@ const AppMap = () => {
       elevation={3}
     >
       <MapContainer
-        key={locat?.toString()}
-        center={locat}
+        key={location?.toString()}
+        center={location}
         zoom={13}
         style={{ height: "100%", width: "100%" }}
         attributionControl={false}
@@ -64,7 +64,7 @@ const AppMap = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
 
-        {locat && <Marker position={locat} icon={customIcon}></Marker>}
+        {location && <Marker position={location} icon={customIcon}></Marker>}
       </MapContainer>
     </Paper>
   );
