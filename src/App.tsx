@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { SearchesList } from "./components/SearchesList/SearchesList";
-import { Button, TextField } from "@mui/material";
-import AppMap from "./components/Map/AppMap";
-import Info from "./components/Info/Info";
+import React, { useEffect, useState } from "react";
 import "./App.css";
+import { LatLngExpression } from "leaflet";
+import Header from "./components/Header/Header";
+import Sidebar from "./components/SideBar/Sidebar";
+import DataDisplay from "./components/DataDisplay/DataDisplay";
+import AppInput from "./components/AppInput/AppInput";
 
 function App() {
   async function getIpFromUrl(url: string) {
@@ -19,33 +20,27 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    getIpFromUrl("https://www.openai.com/research/");
-  }, []);
+  const [position, setPosition] = useState<LatLngExpression | undefined>([
+    51.9, -0.09,
+  ]);
+
+  // useEffect(() => {
+  //   getIpFromUrl("https://www.openai.com/research/");
+  // }, []);
 
   return (
-    <div className="container">
-      <div className="sidebar">
-        <SearchesList />
-      </div>
+    <>
+      <Header />
+      <div className="container">
+        <Sidebar />
 
-      <div className="main">
-        <div className="main__usersInfo">
-          <AppMap />
-          <Info />
-        </div>
-
-        <div className="main__prompt">
-          <TextField sx={{ width: "100%", marginRight: "10px" }} />
-          <Button variant="contained">Search</Button>
-        </div>
-
-        <div className="main__usersInfo">
-          <AppMap />
-          <Info />
+        <div className="main">
+          <DataDisplay title="Users Info:" />
+          <AppInput />
+          <DataDisplay title="Searched Info:" />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

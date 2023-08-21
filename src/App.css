@@ -1,5 +1,5 @@
 .container {
-  max-width: 1300px;
+  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -7,26 +7,12 @@
   height: 100vh;
 }
 
-.sidebar {
-  width: 300px;
-  margin-right: 15px;
-  flex: 0 0 300px;
-  display: flex;
-  flex-direction: column;
+@media (max-width: 770px) {
+  .container {
+    flex-direction: column;
+  }
 }
 
 .main {
   width: 100%;
-}
-
-.main__usersInfo {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.main__prompt {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
 }

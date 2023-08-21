@@ -30,39 +30,29 @@ const array = [
 
 export const SearchesList = () => {
   return (
-    <Paper
-      component="aside"
-      sx={{
-        maxHeight: "300px",
-        height: "100%",
-        overflow: "auto",
-      }}
-      elevation={3}
-    >
-      <List>
-        <ListSubheader>Already Searched:</ListSubheader>
-        <Divider />
-        {array.map((el, index) => {
-          return (
-            <ListItem key={index}>
-              <Tooltip title={el} placement="bottom">
-                <ListItemButton
-                  sx={{
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {el}
-                </ListItemButton>
-              </Tooltip>
-              <IconButton edge="end" aria-label="delete">
-                <Delete />
-              </IconButton>
-            </ListItem>
-          );
-        })}
-      </List>
-    </Paper>
+    <List sx={{ maxWidth: "300px", width: "100%" }}>
+      <ListSubheader>Already Searched:</ListSubheader>
+      <Divider />
+      {array.map((el, index) => {
+        return (
+          <ListItem key={index}>
+            <Tooltip title={el} placement="bottom">
+              <ListItemButton
+                sx={{
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {el}
+              </ListItemButton>
+            </Tooltip>
+            <IconButton edge="end" aria-label="delete">
+              <Delete />
+            </IconButton>
+          </ListItem>
+        );
+      })}
+    </List>
   );
 };
