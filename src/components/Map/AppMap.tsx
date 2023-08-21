@@ -44,7 +44,14 @@ const AppMap = () => {
   // });
 
   return (
-    <Paper sx={{ height: "300px", width: "60%" }} elevation={3}>
+    <Paper
+      sx={{
+        height: "300px",
+        width: "60%",
+        "@media (max-width: 990px)": { width: "100%", marginBottom: "10px" },
+      }}
+      elevation={3}
+    >
       <MapContainer
         key={locat?.toString()}
         center={locat}

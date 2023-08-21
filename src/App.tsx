@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { SearchesList } from "./components/SearchesList/SearchesList";
-import {
-  AppBar,
-  Button,
-  Drawer,
-  IconButton,
-  TextField,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import AppMap from "./components/Map/AppMap";
-import Info from "./components/Info/Info";
 import "./App.css";
 import { LatLngExpression } from "leaflet";
 import Header from "./components/Header/Header";
+import Sidebar from "./components/SideBar/Sidebar";
+import DataDisplay from "./components/DataDisplay/DataDisplay";
+import AppInput from "./components/AppInput/AppInput";
 
 function App() {
   async function getIpFromUrl(url: string) {
@@ -32,11 +23,6 @@ function App() {
   const [position, setPosition] = useState<LatLngExpression | undefined>([
     51.9, -0.09,
   ]);
-  const handleButtonClick = () => {
-    // setPosition(generateRandomLocation());
-  };
-
-  const [string, setString] = useState("");
 
   // useEffect(() => {
   //   getIpFromUrl("https://www.openai.com/research/");
@@ -46,37 +32,12 @@ function App() {
     <>
       <Header />
       <div className="container">
-        <div className="sidebar">
-          <SearchesList />
-        </div>
+        <Sidebar />
 
         <div className="main">
-          <Typography>Users Info</Typography>
-          <div className="main__usersInfo">
-            <AppMap />
-            <Info />
-          </div>
-
-          <div className="main__prompt">
-            <TextField
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setString(e.target.value);
-                console.log(string);
-              }}
-              value={string}
-              sx={{ width: "100%", marginRight: "10px" }}
-              label="Eneter IP adress or URL"
-              variant="standard"
-            />
-            <Button variant="contained" onClick={handleButtonClick}>
-              Search
-            </Button>
-          </div>
-
-          <div className="main__usersInfo">
-            <AppMap />
-            <Info />
-          </div>
+          <DataDisplay title="Users Info:" />
+          <AppInput />
+          <DataDisplay title="Searched Info:" />
         </div>
       </div>
     </>
