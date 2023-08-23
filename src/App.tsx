@@ -6,6 +6,8 @@ import Sidebar from "./components/SideBar/Sidebar";
 import DataDisplay from "./components/DataDisplay/DataDisplay";
 import AppInput from "./components/AppInput/AppInput";
 import { Alert, Snackbar } from "@mui/material";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   async function getIpFromUrl(url: string) {
@@ -52,6 +54,18 @@ function App() {
           <AppInput />
           <DataDisplay title="Searched Info:" />
         </div>
+
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </div>
     </>
   );
