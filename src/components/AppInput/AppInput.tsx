@@ -18,6 +18,7 @@ const AppInput = () => {
         return;
       }
       console.log("Good IP, server request");
+      return;
     }
 
     if (urlValidation(string)) {
