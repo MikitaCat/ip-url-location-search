@@ -5,14 +5,27 @@ import Header from "./components/Header/Header";
 import Sidebar from "./components/SideBar/Sidebar";
 import DataDisplay from "./components/DataDisplay/DataDisplay";
 import AppInput from "./components/AppInput/AppInput";
+import { Alert, Snackbar } from "@mui/material";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   async function getIpFromUrl(url: string) {
     try {
-      const domain = new URL(url).hostname;
-      console.log("Domain", domain);
+      let finalUrl = "";
+      if (
+        url.includes("https://") ||
+        url.includes("http://") ||
+        url.includes("ftp://")
+      ) {
+        finalUrl = new URL(url).hostname;
+        console.log("Domain", finalUrl);
+      } else {
+        finalUrl = url;
+      }
 
-      const response = await fetch(`http://ip-api.com/json/${domain}`);
+      console.log("FINAL URL AFTER IF", finalUrl);
+      const response = await fetch(`http://ip-api.com/json/${finalUrl}`);
       const data = await response.json();
       console.log("IP from URL", data);
     } catch (error) {
@@ -24,9 +37,11 @@ function App() {
     51.9, -0.09,
   ]);
 
-  // useEffect(() => {
-  //   getIpFromUrl("https://www.openai.com/research/");
-  // }, []);
+  useEffect(() => {
+    // getIpFromUrl("http://www.ishowcase.net/");
+    // getIpFromUrl("https://wikipedia.org");
+    // getIpFromUrl("pl.wikipedia.org");
+  }, []);
 
   return (
     <>
@@ -39,6 +54,18 @@ function App() {
           <AppInput />
           <DataDisplay title="Searched Info:" />
         </div>
+
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </div>
     </>
   );
