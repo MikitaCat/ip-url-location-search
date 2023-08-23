@@ -38,9 +38,9 @@ function App() {
   ]);
 
   useEffect(() => {
-    // getIpFromUrl("https://www.openai.com/research/");
+    // getIpFromUrl("http://www.ishowcase.net/");
     // getIpFromUrl("https://wikipedia.org");
-    // getIpFromUrl("https://pl.wikipedia.org/wiki/Leprous");
+    // getIpFromUrl("pl.wikipedia.org");
   }, []);
 
   return (

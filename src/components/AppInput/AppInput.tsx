@@ -1,13 +1,30 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { PromptBlock } from "./AppInput.styled";
-import { adressTypeDetector } from "../../utils/adressTypeDetector";
+import {
+  checkIsIP,
+  checkIsPrivateIP,
+  urlValidation,
+} from "../../utils/adressTypeDetector";
+import { toast } from "react-toastify";
 
 const AppInput = () => {
   const [string, setString] = useState("");
 
   const handleButtonClick = () => {
-    adressTypeDetector(string);
+    if (checkIsIP(string)) {
+      if (checkIsPrivateIP(string)) {
+        toast.warn("Invalid or Private IP");
+        return;
+      }
+      console.log("Good IP, server request");
+    }
+
+    if (urlValidation(string)) {
+      console.log("Correct Domain name, server request");
+    } else {
+      toast.warn("Incorrect Domain Name");
+    }
   };
 
   return (
