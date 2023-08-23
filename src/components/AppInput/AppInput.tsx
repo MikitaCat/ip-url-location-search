@@ -18,7 +18,7 @@ const AppInput = () => {
         }}
         value={string}
         sx={{ width: "100%", marginRight: "10px" }}
-        label="Eneter IP adress or URL"
+        label="Eneter IP adress or URL with protocol flag"
         variant="outlined"
       />
       <Button variant="contained" onClick={handleButtonClick}>
