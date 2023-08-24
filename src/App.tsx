@@ -55,7 +55,11 @@ function App() {
             setValue={setInputValue}
             buttonClick={searchInputClick}
           />
-          <DataDisplay title="Searched Info:" locationInfo={locationInfo} />
+          <DataDisplay
+            title="Searched Info:"
+            locationInfo={locationInfo}
+            isLoading={isLoading}
+          />
         </div>
 
         <ToastContainer
