@@ -13,18 +13,6 @@ const AppMap = () => {
 
   const [location, setLocation] = useState<LatLngExpression>([22.5, 22.5]);
 
-  // async function getMyIpLocation() {
-  //   try {
-  //     const response = await axios(`http://ip-api.com/json`);
-  //     const data = await response;
-  //     const latLon: LatLngExpression = [response.data.lat, response.data.lon];
-  //     setLocation(latLon);
-  //     console.log("Position", latLon);
-  //   } catch (error) {
-  //     console.error("Error getting IP:", error);
-  //   }
-  // }
-
   // function generateRandomLocation(): LatLngExpression {
   //   const minLat = -90;
   //   const maxLat = 90;
