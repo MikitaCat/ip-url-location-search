@@ -2,6 +2,7 @@ import { Paper } from "@mui/material";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import { LatLngExpression, Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { AppMapPaperStyled } from "./AppMap.styled";
 
 const AppMap = ({ latlong }: any) => {
   const customIcon = new Icon({
@@ -10,16 +11,9 @@ const AppMap = ({ latlong }: any) => {
   });
 
   return (
-    <Paper
-      sx={{
-        height: "320px",
-        width: "60%",
-        "@media (max-width: 990px)": { width: "100%", marginBottom: "10px" },
-      }}
-      elevation={3}
-    >
+    <AppMapPaperStyled>
       <MapContainer
-        key={latlong.toString()}
+        key={latlong ? latlong.toString() : ""}
         center={latlong}
         zoom={13}
         style={{ height: "100%", width: "100%" }}
@@ -32,7 +26,7 @@ const AppMap = ({ latlong }: any) => {
 
         {latlong && <Marker position={latlong} icon={customIcon}></Marker>}
       </MapContainer>
-    </Paper>
+    </AppMapPaperStyled>
   );
 };
 
