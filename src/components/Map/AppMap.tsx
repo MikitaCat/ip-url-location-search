@@ -13,10 +13,6 @@ const AppMap = () => {
 
   const [locat, setLocation] = useState<LatLngExpression>([22.5, 22.5]);
 
-  const { locationInfo, isLoading, error } = useAppSelector(
-    (state) => state.getLocationSlise
-  );
-
   // function generateRandomLocation(): LatLngExpression {
   //   const minLat = -90;
   //   const maxLat = 90;

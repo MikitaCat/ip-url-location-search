@@ -5,6 +5,7 @@ export const fetchLocation = createAsyncThunk(
   "locationSlise/get",
   async (value: string, thunkAPI) => {
     const response = await getLocationByIPorDomain(value);
-    return response;
+    const { city, country, regionName, timezone, lat, lon, query } = response;
+    return { city, country, regionName, timezone, lat, lon, query };
   }
 );

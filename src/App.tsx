@@ -10,7 +10,7 @@ import {
   checkIsIP,
   checkIsPrivateIP,
   urlValidation,
-} from "./utils/adressTypeDetector";
+} from "./utils/adressValidation";
 import { useAppDispatch, useAppSelector } from "./redux/hooks/redux";
 import { fetchLocation } from "./redux/thunks/getLocationThunk";
 
