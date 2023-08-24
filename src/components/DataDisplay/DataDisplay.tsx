@@ -10,7 +10,13 @@ const DataDisplay = ({ title, locationInfo, isLoading }: DataDisplayProps) => {
     <>
       <Typography>{title}</Typography>
       <DataDisplayBlock>
-        <AppMap />
+        <AppMap
+          latlong={
+            locationInfo && locationInfo.lat
+              ? [locationInfo?.lat, locationInfo?.lon]
+              : [22.0, 22.0]
+          }
+        />
         <InfoBlock locationInfo={locationInfo} isLoading={isLoading} />
       </DataDisplayBlock>
     </>

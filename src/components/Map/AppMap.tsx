@@ -1,35 +1,13 @@
 import { Paper } from "@mui/material";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import { LatLngExpression, Icon } from "leaflet";
-import { useEffect, useLayoutEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
-import { useAppSelector } from "../../redux/hooks/redux";
 
-const AppMap = () => {
+const AppMap = ({ latlong }: any) => {
   const customIcon = new Icon({
     iconUrl: require("../../img/placeholder.png"),
     iconSize: [38, 38],
   });
-
-  const [locat, setLocation] = useState<LatLngExpression>([22.5, 22.5]);
-
-  // function generateRandomLocation(): LatLngExpression {
-  //   const minLat = -90;
-  //   const maxLat = 90;
-  //   const minLng = -180;
-  //   const maxLng = 180;
-
-  //   const randomLat = Math.random() * (maxLat - minLat) + minLat;
-  //   const randomLng = Math.random() * (maxLng - minLng) + minLng;
-
-  //   return [randomLat, randomLng];
-  // }
-
-  // const locat = generateRandomLocation();
-
-  // useEffect(() => {
-  //   generateRandomLocation();
-  // }, []);
 
   return (
     <Paper
@@ -41,8 +19,8 @@ const AppMap = () => {
       elevation={3}
     >
       <MapContainer
-        key={locat?.toString()}
-        center={locat}
+        key={latlong.toString()}
+        center={latlong}
         zoom={13}
         style={{ height: "100%", width: "100%" }}
         attributionControl={false}
@@ -52,7 +30,7 @@ const AppMap = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
 
-        {locat && <Marker position={locat} icon={customIcon}></Marker>}
+        {latlong && <Marker position={latlong} icon={customIcon}></Marker>}
       </MapContainer>
     </Paper>
   );
