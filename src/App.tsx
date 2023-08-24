@@ -17,6 +17,9 @@ import { fetchLocation } from "./redux/thunks/getLocationThunk";
 function App() {
   const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState("");
+  const { locationInfo, error, isLoading } = useAppSelector(
+    (state) => state.getLocationSlise
+  );
 
   const searchInputClick = () => {
     if (checkIsIP(inputValue)) {
@@ -52,7 +55,7 @@ function App() {
             setValue={setInputValue}
             buttonClick={searchInputClick}
           />
-          <DataDisplay title="Searched Info:" />
+          <DataDisplay title="Searched Info:" locationInfo={locationInfo} />
         </div>
 
         <ToastContainer

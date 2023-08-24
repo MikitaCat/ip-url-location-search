@@ -3,13 +3,13 @@ import { fetchLocation } from "../thunks/getLocationThunk";
 import { LocationInfoType } from "../../models/location";
 
 type initialStateType = {
-  locationInfo: LocationInfoType | {};
+  locationInfo: LocationInfoType;
   isLoading: boolean;
   error: any;
 };
 
 const initialState: initialStateType = {
-  locationInfo: {},
+  locationInfo: {} as LocationInfoType,
   isLoading: false,
   error: "",
 };

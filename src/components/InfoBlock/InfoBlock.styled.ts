@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
-import { Paper, TableCell } from "@mui/material";
+import { Paper, TableCell, TableContainer } from "@mui/material";
 
 export const InfoBlockPaper = styled(Paper)({
-  height: "300px",
   width: "39%",
-  padding: "5px",
+  height: "320px",
   "@media (max-width: 990px)": { width: "100%" },
 }) as typeof Paper;
 

@@ -4,7 +4,7 @@ import React from "react";
 export const DataDisplayBlock = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 
   @media (max-width: 990px) {
     flex-direction: column;

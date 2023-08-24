@@ -11,7 +11,7 @@ const DataDisplay = ({ title, locationInfo, isLoading }: DataDisplayProps) => {
       <Typography>{title}</Typography>
       <DataDisplayBlock>
         <AppMap />
-        <InfoBlock />
+        <InfoBlock locationInfo={locationInfo} isLoading={isLoading} />
       </DataDisplayBlock>
     </>
   );
