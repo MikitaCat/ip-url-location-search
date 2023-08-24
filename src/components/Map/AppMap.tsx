@@ -1,9 +1,9 @@
 import { Paper } from "@mui/material";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import { LatLngExpression, Icon } from "leaflet";
 import { useEffect, useLayoutEffect, useState } from "react";
-import axios from "axios";
+import "leaflet/dist/leaflet.css";
+import { useAppSelector } from "../../redux/hooks/redux";
 
 const AppMap = () => {
   const customIcon = new Icon({
@@ -11,7 +11,11 @@ const AppMap = () => {
     iconSize: [38, 38],
   });
 
-  const [location, setLocation] = useState<LatLngExpression>([22.5, 22.5]);
+  const [locat, setLocation] = useState<LatLngExpression>([22.5, 22.5]);
+
+  const { locationInfo, isLoading, error } = useAppSelector(
+    (state) => state.getLocationSlise
+  );
 
   // function generateRandomLocation(): LatLngExpression {
   //   const minLat = -90;
@@ -28,8 +32,8 @@ const AppMap = () => {
   // const locat = generateRandomLocation();
 
   // useEffect(() => {
-  //   getMyIpLocation();
-  // });
+  //   generateRandomLocation();
+  // }, []);
 
   return (
     <Paper
@@ -41,8 +45,8 @@ const AppMap = () => {
       elevation={3}
     >
       <MapContainer
-        key={location?.toString()}
-        center={location}
+        key={locat?.toString()}
+        center={locat}
         zoom={13}
         style={{ height: "100%", width: "100%" }}
         attributionControl={false}
@@ -52,7 +56,7 @@ const AppMap = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
 
-        {location && <Marker position={location} icon={customIcon}></Marker>}
+        {locat && <Marker position={locat} icon={customIcon}></Marker>}
       </MapContainer>
     </Paper>
   );

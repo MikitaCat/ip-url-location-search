@@ -17,4 +17,4 @@ const DataDisplay = ({ title }: DataDisplayProps) => {
   );
 };
 
-export default DataDisplay;
+export default React.memo(DataDisplay);

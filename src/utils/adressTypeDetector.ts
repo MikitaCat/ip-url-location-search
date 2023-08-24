@@ -20,7 +20,10 @@ export function urlValidation(value: string) {
     if (domainName === "") {
       return false;
     }
-    return true;
+    return domainName;
+
+    // And also I need this because I thing that user can enter something like this:
+    //"google.com/somethig/something?limit=10..."
   } catch (err) {
     if (value.includes("/")) {
       let parts = [];
@@ -31,7 +34,7 @@ export function urlValidation(value: string) {
     }
 
     if (domainNameRegExp.test(domainName)) {
-      return true;
+      return domainName;
     }
   }
 }
