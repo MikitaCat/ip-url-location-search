@@ -17,7 +17,7 @@ import { fetchLocation } from "./redux/thunks/getLocationThunk";
 function App() {
   const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState("");
-  const { locationInfo, error, isLoading } = useAppSelector(
+  const { locationInfo, isLoading } = useAppSelector(
     (state) => state.getLocationSlise
   );
 

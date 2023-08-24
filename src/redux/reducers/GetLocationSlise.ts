@@ -23,10 +23,12 @@ export const getLocationSlise = createSlice({
       state.isLoading = true;
     });
     builder.addCase(fetchLocation.fulfilled, (state, action) => {
+      console.log("ACTION", action);
       state.isLoading = false;
       state.locationInfo = action.payload;
     });
     builder.addCase(fetchLocation.rejected, (state, action) => {
+      state.locationInfo = {} as LocationInfoType;
       state.isLoading = false;
       state.error = action.payload;
     });
