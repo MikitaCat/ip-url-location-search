@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchLocation } from "../thunks/getLocationThunk";
-import { LocationType } from "../../models/location";
+import { LocationInfoType } from "../../models/location";
 
 type initialStateType = {
-  locationInfo: LocationType | {};
+  locationInfo: LocationInfoType | {};
   isLoading: boolean;
   error: any;
 };

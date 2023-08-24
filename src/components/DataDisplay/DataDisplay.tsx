@@ -2,10 +2,10 @@ import { Typography } from "@mui/material";
 import React from "react";
 import AppMap from "../Map/AppMap";
 import InfoBlock from "../InfoBlock/InfoBlock";
-import { DataDisplayProps } from "./DataDispalyTypes";
+import { DataDisplayProps } from "./DataDispalyProps";
 import { DataDisplayBlock } from "./DataDisplay.styled";
 
-const DataDisplay = ({ title }: DataDisplayProps) => {
+const DataDisplay = ({ title, locationInfo, isLoading }: DataDisplayProps) => {
   return (
     <>
       <Typography>{title}</Typography>
