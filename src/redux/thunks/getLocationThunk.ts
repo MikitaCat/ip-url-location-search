@@ -19,11 +19,11 @@ export const fetchLocation = createAsyncThunk(
         return { city, country, regionName, lat, lon, query, name: value };
       } else {
         toast.warn("You entered incorrect IP/URL or it is impossible to find");
-        return thunkAPI.rejectWithValue("Status fail");
+        return thunkAPI.rejectWithValue("");
       }
     } catch (error) {
       toast.error("Something went wrong");
-      return thunkAPI.rejectWithValue("Something went wrong");
+      return thunkAPI.rejectWithValue("");
     }
   }
 );

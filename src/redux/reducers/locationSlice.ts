@@ -56,7 +56,7 @@ export const locationSlice = createSlice({
         localStorage.setItem("searchedHistory", JSON.stringify(state.history));
       }
     });
-    builder.addCase(fetchLocation.rejected, (state, action) => {
+    builder.addCase(fetchLocation.rejected, (state) => {
       state.locationInfo = {} as LocationInfoType;
       state.isLoading = false;
     });
