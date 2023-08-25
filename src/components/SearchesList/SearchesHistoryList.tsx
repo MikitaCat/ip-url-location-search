@@ -12,6 +12,7 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/redux";
 import locationSlice, {
   setLocationFromHistory,
+  deleteHistoryPoint,
 } from "../../redux/reducers/locationSlice";
 
 export const SearchesList = () => {
@@ -37,7 +38,11 @@ export const SearchesList = () => {
                 {el.name}
               </ListItemButton>
             </Tooltip>
-            <IconButton edge="end" aria-label="delete">
+            <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() => dispatch(deleteHistoryPoint(el.name))}
+            >
               <Delete />
             </IconButton>
           </ListItem>
