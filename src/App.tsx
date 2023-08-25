@@ -1,47 +1,50 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { LatLngExpression } from "leaflet";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/SideBar/Sidebar";
 import DataDisplay from "./components/DataDisplay/DataDisplay";
 import AppInput from "./components/AppInput/AppInput";
-import { Alert, Snackbar } from "@mui/material";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  checkIsIP,
+  checkIsPrivateIP,
+  urlValidation,
+} from "./utils/adressValidation";
+import { useAppDispatch, useAppSelector } from "./redux/hooks/redux";
+import { fetchLocation } from "./redux/thunks/getLocationThunk";
 
 function App() {
-  async function getIpFromUrl(url: string) {
-    try {
-      let finalUrl = "";
-      if (
-        url.includes("https://") ||
-        url.includes("http://") ||
-        url.includes("ftp://")
-      ) {
-        finalUrl = new URL(url).hostname;
-        console.log("Domain", finalUrl);
-      } else {
-        finalUrl = url;
+  const dispatch = useAppDispatch();
+  const [inputValue, setInputValue] = useState("");
+  const { locationInfo, isLoading } = useAppSelector(
+    (state) => state.locationSlice
+  );
+
+  const searchInputClick = () => {
+    if (checkIsIP(inputValue)) {
+      if (checkIsPrivateIP(inputValue)) {
+        toast.warn("Invalid or Private IP");
+        setInputValue("");
+        return;
       }
-
-      console.log("FINAL URL AFTER IF", finalUrl);
-      const response = await fetch(`http://ip-api.com/json/${finalUrl}`);
-      const data = await response.json();
-      console.log("IP from URL", data);
-    } catch (error) {
-      console.error("Error getting IP:", error);
+      console.log("Good IP, server request with", inputValue);
+      dispatch(fetchLocation(inputValue));
+      setInputValue("");
+      return;
     }
-  }
 
-  const [position, setPosition] = useState<LatLngExpression | undefined>([
-    51.9, -0.09,
-  ]);
+    let domainMane = urlValidation(inputValue);
 
-  useEffect(() => {
-    // getIpFromUrl("http://www.ishowcase.net/");
-    // getIpFromUrl("https://wikipedia.org");
-    // getIpFromUrl("pl.wikipedia.org");
-  }, []);
+    if (domainMane) {
+      console.log("Correct Domain name, server request with", domainMane);
+      dispatch(fetchLocation(domainMane));
+      setInputValue("");
+    } else {
+      toast.warn("Incorrect Domain Name");
+      setInputValue("");
+    }
+  };
 
   return (
     <>
@@ -51,8 +54,16 @@ function App() {
 
         <div className="main">
           <DataDisplay title="Users Info:" />
-          <AppInput />
-          <DataDisplay title="Searched Info:" />
+          <AppInput
+            value={inputValue}
+            setValue={setInputValue}
+            buttonClick={searchInputClick}
+          />
+          <DataDisplay
+            title="Searched Info:"
+            locationInfo={locationInfo}
+            isLoading={isLoading}
+          />
         </div>
 
         <ToastContainer

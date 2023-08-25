@@ -1,60 +1,20 @@
 import { Paper } from "@mui/material";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import { LatLngExpression, Icon } from "leaflet";
-import { useEffect, useLayoutEffect, useState } from "react";
-import axios from "axios";
+import "leaflet/dist/leaflet.css";
+import { AppMapPaperStyled } from "./AppMap.styled";
 
-const AppMap = () => {
+const AppMap = ({ latlong }: any) => {
   const customIcon = new Icon({
     iconUrl: require("../../img/placeholder.png"),
     iconSize: [38, 38],
   });
 
-  const [location, setLocation] = useState<LatLngExpression>([22.5, 22.5]);
-
-  // async function getMyIpLocation() {
-  //   try {
-  //     const response = await axios(`http://ip-api.com/json`);
-  //     const data = await response;
-  //     const latLon: LatLngExpression = [response.data.lat, response.data.lon];
-  //     setLocation(latLon);
-  //     console.log("Position", latLon);
-  //   } catch (error) {
-  //     console.error("Error getting IP:", error);
-  //   }
-  // }
-
-  // function generateRandomLocation(): LatLngExpression {
-  //   const minLat = -90;
-  //   const maxLat = 90;
-  //   const minLng = -180;
-  //   const maxLng = 180;
-
-  //   const randomLat = Math.random() * (maxLat - minLat) + minLat;
-  //   const randomLng = Math.random() * (maxLng - minLng) + minLng;
-
-  //   return [randomLat, randomLng];
-  // }
-
-  // const locat = generateRandomLocation();
-
-  // useEffect(() => {
-  //   getMyIpLocation();
-  // });
-
   return (
-    <Paper
-      sx={{
-        height: "300px",
-        width: "60%",
-        "@media (max-width: 990px)": { width: "100%", marginBottom: "10px" },
-      }}
-      elevation={3}
-    >
+    <AppMapPaperStyled>
       <MapContainer
-        key={location?.toString()}
-        center={location}
+        key={latlong ? latlong.toString() : ""}
+        center={latlong}
         zoom={13}
         style={{ height: "100%", width: "100%" }}
         attributionControl={false}
@@ -64,9 +24,9 @@ const AppMap = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
 
-        {location && <Marker position={location} icon={customIcon}></Marker>}
+        {latlong && <Marker position={latlong} icon={customIcon}></Marker>}
       </MapContainer>
-    </Paper>
+    </AppMapPaperStyled>
   );
 };
 
