@@ -8,10 +8,12 @@ type initialStateType = {
   history: LocationInfoType[];
 };
 
+const storageHistory = localStorage.getItem("searchedHistory");
+
 const initialState: initialStateType = {
   locationInfo: {} as LocationInfoType,
   isLoading: false,
-  history: [],
+  history: storageHistory ? JSON.parse(storageHistory) : [],
 };
 
 export const locationSlice = createSlice({
@@ -29,7 +31,10 @@ export const locationSlice = createSlice({
       const updatedHistory = state.history.filter(
         (item) => item.name !== action.payload
       );
-      if (updatedHistory) state.history = updatedHistory;
+      if (updatedHistory) {
+        state.history = updatedHistory;
+        localStorage.setItem("searchedHistory", JSON.stringify(state.history));
+      }
     },
   },
   extraReducers: (builder) => {
@@ -41,12 +46,14 @@ export const locationSlice = createSlice({
       state.isLoading = false;
       state.locationInfo = action.payload;
 
+      //Adding to the history if there aren't such element
       const historyPoint = state.history.find((item: LocationInfoType) => {
         return item.name === action.payload.name;
       });
 
       if (!historyPoint) {
         state.history.push(action.payload);
+        localStorage.setItem("searchedHistory", JSON.stringify(state.history));
       }
     });
     builder.addCase(fetchLocation.rejected, (state, action) => {
