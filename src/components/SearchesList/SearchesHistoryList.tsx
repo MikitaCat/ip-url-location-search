@@ -9,10 +9,15 @@ import {
 } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import React from "react";
-import { useAppSelector } from "../../redux/hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/redux";
+import locationSlice, {
+  setLocationFromHistory,
+} from "../../redux/reducers/locationSlice";
 
 export const SearchesList = () => {
-  const { history } = useAppSelector((state) => state.getLocationSlise);
+  const { history } = useAppSelector((state) => state.locationSlice);
+  const dispatch = useAppDispatch();
+
   return (
     <List sx={{ maxWidth: "300px", width: "100%" }}>
       <ListSubheader>Already Searched:</ListSubheader>
@@ -27,6 +32,7 @@ export const SearchesList = () => {
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
                 }}
+                onClick={() => dispatch(setLocationFromHistory(el.name))}
               >
                 {el.name}
               </ListItemButton>

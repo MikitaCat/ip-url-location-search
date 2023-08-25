@@ -18,7 +18,7 @@ function App() {
   const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState("");
   const { locationInfo, isLoading } = useAppSelector(
-    (state) => state.getLocationSlise
+    (state) => state.locationSlice
   );
 
   const searchInputClick = () => {

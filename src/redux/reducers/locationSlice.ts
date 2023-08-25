@@ -1,5 +1,5 @@
-import { LocationInfoType } from "./../../models/location";
-import { createSlice } from "@reduxjs/toolkit";
+import { LocationInfoType } from "../../models/location";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { fetchLocation } from "../thunks/getLocationThunk";
 
 type initialStateType = {
@@ -14,10 +14,18 @@ const initialState: initialStateType = {
   history: [],
 };
 
-export const getLocationSlise = createSlice({
-  name: "locationSlise",
+export const locationSlice = createSlice({
+  name: "locationSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    setLocationFromHistory(state, action: PayloadAction<string>) {
+      const selectedPoint = state.history.find((item: LocationInfoType) => {
+        return item.name === action.payload;
+      });
+
+      if (selectedPoint) state.locationInfo = selectedPoint;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchLocation.pending, (state) => {
       state.isLoading = true;
@@ -35,4 +43,5 @@ export const getLocationSlise = createSlice({
   },
 });
 
-export default getLocationSlise.reducer;
+export default locationSlice.reducer;
+export const { setLocationFromHistory } = locationSlice.actions;

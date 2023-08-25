@@ -1,8 +1,8 @@
-import getLocationSlise from "../reducers/getLocationSlise";
+import locationSlice from "../reducers/locationSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 const rootReducer = combineReducers({
-  getLocationSlise,
+  locationSlice,
 });
 
 export const setUpStore = () => {
