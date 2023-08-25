@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/SideBar/Sidebar";
@@ -25,10 +25,12 @@ function App() {
     if (checkIsIP(inputValue)) {
       if (checkIsPrivateIP(inputValue)) {
         toast.warn("Invalid or Private IP");
+        setInputValue("");
         return;
       }
       console.log("Good IP, server request with", inputValue);
       dispatch(fetchLocation(inputValue));
+      setInputValue("");
       return;
     }
 
@@ -37,8 +39,10 @@ function App() {
     if (domainMane) {
       console.log("Correct Domain name, server request with", domainMane);
       dispatch(fetchLocation(domainMane));
+      setInputValue("");
     } else {
       toast.warn("Incorrect Domain Name");
+      setInputValue("");
     }
   };
 
