@@ -29,9 +29,7 @@ export const SearchesList = () => {
             <Tooltip title={el.name} placement="bottom">
               <ListItemButton
                 sx={{
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
+                  paddingLeft: "8px",
                 }}
                 onClick={() => dispatch(setLocationFromHistory(el.name))}
               >

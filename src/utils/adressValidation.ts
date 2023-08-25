@@ -22,7 +22,7 @@ export function urlValidation(value: string) {
     }
     return domainName;
 
-    // And also I need this because I thing that user can enter something like this:
+    // And also I need this because I think that user can enter something like this:
     //"google.com/somethig/something?limit=10..."
   } catch (err) {
     if (value.includes("/")) {
