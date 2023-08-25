@@ -1,7 +1,7 @@
 import { AppBar, Drawer, IconButton, Toolbar, Typography } from "@mui/material";
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import { SearchesList } from "../SearchesList/SearchesList";
+import { SearchesList } from "../SearchesList/SearchesHistoryList";
 
 const Header = () => {
   const [draverOpened, setDraverOpened] = useState(false);

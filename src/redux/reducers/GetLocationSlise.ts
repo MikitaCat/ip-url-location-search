@@ -1,17 +1,17 @@
+import { LocationInfoType } from "./../../models/location";
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchLocation } from "../thunks/getLocationThunk";
-import { LocationInfoType } from "../../models/location";
 
 type initialStateType = {
   locationInfo: LocationInfoType;
   isLoading: boolean;
-  error: any;
+  history: LocationInfoType[];
 };
 
 const initialState: initialStateType = {
   locationInfo: {} as LocationInfoType,
   isLoading: false,
-  error: "",
+  history: [],
 };
 
 export const getLocationSlise = createSlice({
@@ -26,11 +26,11 @@ export const getLocationSlise = createSlice({
       console.log("ACTION", action);
       state.isLoading = false;
       state.locationInfo = action.payload;
+      state.history.push(action.payload);
     });
     builder.addCase(fetchLocation.rejected, (state, action) => {
       state.locationInfo = {} as LocationInfoType;
       state.isLoading = false;
-      state.error = action.payload;
     });
   },
 });
