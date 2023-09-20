@@ -4,7 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { SearchesList } from "../SearchesList/SearchesHistoryList";
 
 const Header = () => {
-  const [draverOpened, setDraverOpened] = useState(false);
+  const [drawerOpened, setDrawerOpened] = useState(false);
   return (
     <>
       <AppBar position="static">
@@ -22,15 +22,15 @@ const Header = () => {
               },
             }}
           >
-            <MenuIcon onClick={() => setDraverOpened(true)} />
+            <MenuIcon onClick={() => setDrawerOpened(true)} />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Search by IP or URL
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer open={draverOpened} onClose={() => setDraverOpened(false)}>
-        <SearchesList />
+      <Drawer open={drawerOpened} onClose={() => setDrawerOpened(false)}>
+        <SearchesList drawerOpen={setDrawerOpened} />
       </Drawer>
     </>
   );

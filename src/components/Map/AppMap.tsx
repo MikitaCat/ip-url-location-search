@@ -1,6 +1,5 @@
-import { Paper } from "@mui/material";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
-import { LatLngExpression, Icon } from "leaflet";
+import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { AppMapPaperStyled } from "./AppMap.styled";
 
