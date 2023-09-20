@@ -12,9 +12,17 @@ const AppInput = ({ value, setValue, buttonClick }: AppInputProps) => {
     buttonClick();
   };
 
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      buttonClick();
+    }
+  };
+
   return (
     <PromptBlock>
       <TextField
+        onKeyDown={handleInputKeyDown}
         onChange={handleInpupChange}
         value={value}
         sx={{ width: "100%", marginRight: "10px" }}
