@@ -36,7 +36,6 @@ function App() {
         setInputValue("");
         return;
       }
-      console.log("Good IP, server request with", inputValue);
       dispatch(fetchLocation(inputValue));
       setInputValue("");
       return;
@@ -45,7 +44,6 @@ function App() {
     let domainMane = urlValidation(inputValue);
 
     if (domainMane) {
-      console.log("Correct Domain name, server request with", domainMane);
       dispatch(fetchLocation(domainMane));
       setInputValue("");
     } else {

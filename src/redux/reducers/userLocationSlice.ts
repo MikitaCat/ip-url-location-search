@@ -21,7 +21,6 @@ export const userLocationSlice = createSlice({
       state.userDataLoading = true;
     });
     builder.addCase(fetchUserLocation.fulfilled, (state, action) => {
-      console.log("ACTION", action);
       state.userDataLoading = false;
       state.userLocationInfo = action.payload;
     });

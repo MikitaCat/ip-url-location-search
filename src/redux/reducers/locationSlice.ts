@@ -45,7 +45,6 @@ export const locationSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(fetchLocation.fulfilled, (state, action) => {
-      console.log("ACTION", action);
       state.isLoading = false;
       state.locationInfo = action.payload;
 
