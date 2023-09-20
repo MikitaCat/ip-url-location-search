@@ -8,7 +8,7 @@ type initialStateType = {
   history: LocationInfoType[];
 };
 
-const storageHistory = localStorage.getItem("searchedHistory");
+const storageHistory = sessionStorage.getItem("searchedHistory");
 
 const initialState: initialStateType = {
   locationInfo: {} as LocationInfoType,
@@ -33,7 +33,10 @@ export const locationSlice = createSlice({
       );
       if (updatedHistory) {
         state.history = updatedHistory;
-        localStorage.setItem("searchedHistory", JSON.stringify(state.history));
+        sessionStorage.setItem(
+          "searchedHistory",
+          JSON.stringify(state.history)
+        );
       }
     },
   },
@@ -53,7 +56,10 @@ export const locationSlice = createSlice({
 
       if (!historyPoint) {
         state.history.push(action.payload);
-        localStorage.setItem("searchedHistory", JSON.stringify(state.history));
+        sessionStorage.setItem(
+          "searchedHistory",
+          JSON.stringify(state.history)
+        );
       }
     });
     builder.addCase(fetchLocation.rejected, (state) => {
