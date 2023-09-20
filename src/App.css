@@ -1,11 +1,11 @@
 .container {
+  margin-top: 70px;
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
   display: flex;
-  padding-top: 10px;
   height: 100vh;
-  padding: 5px;
+  padding: 70px 5px 0px 5px;
 }
 
 @media (max-width: 770px) {

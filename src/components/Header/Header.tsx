@@ -7,7 +7,7 @@ const Header = () => {
   const [drawerOpened, setDrawerOpened] = useState(false);
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             size="large"
