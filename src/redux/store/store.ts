@@ -1,8 +1,10 @@
+import userLocationSlice from "./../reducers/userLocationSlice";
 import locationSlice from "../reducers/locationSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 const rootReducer = combineReducers({
   locationSlice,
+  userLocationSlice,
 });
 
 export const setUpStore = () => {

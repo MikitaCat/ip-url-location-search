@@ -13,6 +13,7 @@ import {
 } from "./utils/adressValidation";
 import { useAppDispatch, useAppSelector } from "./redux/hooks/redux";
 import { fetchLocation } from "./redux/thunks/getLocationThunk";
+import { fetchUserLocation } from "./redux/thunks/getUserLocationThunk";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -20,6 +21,13 @@ function App() {
   const { locationInfo, isLoading } = useAppSelector(
     (state) => state.locationSlice
   );
+  const { userLocationInfo, userDataLoading } = useAppSelector(
+    (state) => state.userLocationSlice
+  );
+
+  useEffect(() => {
+    dispatch(fetchUserLocation(""));
+  }, []);
 
   const searchInputClick = () => {
     if (checkIsIP(inputValue)) {
@@ -53,7 +61,11 @@ function App() {
         <Sidebar />
 
         <div className="main">
-          <DataDisplay title="Users Info:" />
+          <DataDisplay
+            title="Users Info:"
+            locationInfo={userLocationInfo}
+            isLoading={userDataLoading}
+          />
           <AppInput
             value={inputValue}
             setValue={setInputValue}
